@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,7 +64,7 @@ public class MovementController : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool crouch, bool jump)
+	public void Move(float move, bool crouch, bool jump, float chargedJump)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
@@ -125,12 +126,17 @@ public class MovementController : MonoBehaviour
 				Flip();
 			}
 		}
-		// If the player should jump...
-		if (m_Grounded && jump)
+	}
+
+	public void Jump(float xForce, float chargedJump)
+	{
+		if (m_Grounded)
 		{
+			Debug.Log(xForce); 
 			// Add a vertical force to the player.
 			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			var jumpForce = m_JumpForce * chargedJump;
+			m_Rigidbody2D.AddForce(new Vector2(xForce, jumpForce));
 		}
 	}
 
