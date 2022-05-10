@@ -7,13 +7,15 @@ public class Movement : MonoBehaviour
 {
 
     public MovementController controller;
-
+    public Rigidbody2D _rb;
+    
     private float _runSpeed = 40f;
     private float _horizontalMove = 0f;
     private float _verticalJumpAdjustment = 100f;
     private bool _discharge = false;
     private float _charger = 0f;
     private float _tempMove = 0f;
+
 
     // Update is called once per frame
     void Update()
@@ -41,6 +43,6 @@ public class Movement : MonoBehaviour
             _discharge = false;
             _charger = 0f;
         }
-        controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _discharge,_charger);
+        controller.Move(_horizontalMove * Time.fixedDeltaTime, false);
     }
 }

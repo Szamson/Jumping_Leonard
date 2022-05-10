@@ -64,7 +64,7 @@ public class MovementController : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool crouch, bool jump, float chargedJump)
+	public void Move(float move, bool crouch)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
